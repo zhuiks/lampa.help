@@ -2,6 +2,7 @@
   import 'wired-elements/lib/wired-card.js';
   import 'wired-elements/lib/wired-divider.js';
   import LessonHeader from './lesson-header.svelte';
+  import MemoryVerse from './memory-verse.svelte';
 
   export let section;
   export let lesson;
@@ -18,12 +19,7 @@
     lessonSection={section}
     lessonScripture={lesson['Scripture']} />
 
-  <blockquote class="memory-verse">
-    <h3>Memory Verse</h3>
-    <wired-card fill="#b2ff46">
-      <p>{lesson['Verse']}</p>
-    </wired-card>
-  </blockquote>
+  <MemoryVerse verse={lesson['Verse']} />  
 
   <h3>Main Truth</h3>
   <h2>{lesson['Truth']}</h2>
@@ -61,22 +57,5 @@
 
   h2 {
     color: var(--orange);
-  }
-
-  .memory-verse {
-    float: right;
-    width: 40%;
-    position: relative;
-  }
-  .memory-verse h3{
-    position: absolute;
-    top: -3em;
-    right: 1em;
-    transform: rotate(-2deg);
-  }
-  .memory-verse wired-card {
-    padding: 0 1em;
-    text-align: center;
-    transform: rotate(-1deg);
   }
 </style>
