@@ -2,14 +2,17 @@
   import { WiredCard } from 'wired-elements';
   export let section;
   export let lesson;
-  console.log(lesson['Song suggestions'])
+
+  function sunitize(str) {
+    return str.replace(/</g, '').replace(/>/g, '').replace('\n', '<br/>');
+  }
 </script>
 
 <article class="lesson">
   <header>
     <wired-card fill="#ffff0b">
       <h4>Scripture:</h4> 
-      <p>{lesson['Scripture for lesson']}</p>
+      <p>{lesson['Scripture']}</p>
     </wired-card>  
 
     <h3>{section} #{lesson['Number']}</h3>
@@ -19,32 +22,32 @@
   <blockquote class="memory-verse">
     <h3>Memory Verse</h3>
     <wired-card fill="#b2ff46">
-      <p>{lesson['Memory Verse']}</p>
+      <p>{lesson['Verse']}</p>
     </wired-card>
   </blockquote>
 
   <h3>Main Truth</h3>
-  <h2>{lesson['Main Truth']}</h2>
+  <h2>{lesson['Truth']}</h2>
 
   <section>
     <h4>Summary</h4>
-    <p>{lesson['Summary'].replace('\n', '<br/>')}</p>
+    <p>{@html sunitize(lesson['Summary'])}</p>
 
     <wired-card elevation="2">
       <h4>God's character</h4>
-      <p>{lesson['Character'].replace('\n', '<br/>')}</p>
+      <p>{lesson['Character']}</p>
     </wired-card>
   </section>
 
   <section>
     <h4>Application</h4>
-    <p>{lesson['Application'].replace('\n', '<br/>')}</p>
+    <p>{@html sunitize(lesson['Application'])}</p>
   </section>
 
   <footer>
     <h4>Song suggestions</h4>
     <ul>
-    {#each lesson['Song suggestions'] as song}
+    {#each lesson['Songs'] as song}
       <li>{song}</li>
     {/each}
     </ul>
