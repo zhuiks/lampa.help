@@ -1,10 +1,35 @@
-<script>
-  import { page } from '$app/stores';
-  import Lesson from '$lib/lesson.svelte';
+<script context="module">
+  import { parse } from 'yaml';
 
-  const { num } = $page.params;  
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load({ page, fetch, session, context }) {
+		const url = `http://localhost:3000/lessons/lesson-${page.params.num}.yml`;
+		const res = await fetch(url);
+
+		if (res.ok) {
+      const data = await res.text();
+
+      return {
+				props: {
+					lesson: parse(data) 
+				}
+			};
+		}
+
+    return {
+			status: res.status,
+			error: new Error(`Could not load ${url}`)
+		};
+	}
 </script>
 
+<script>
+  import Lesson from '$lib/lesson.svelte';
 
-<h1>Lesson #{num}</h1>
-<Lesson {num}/>
+  export let lesson;
+
+</script>
+
+<Lesson {lesson}/>
