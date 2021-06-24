@@ -19,6 +19,7 @@
   },
   "type": "module",
   "dependencies": {
+    "wired-elements": "^3.0.0-rc.6",
     "yaml": "2.0.0-6"
   }
 }
