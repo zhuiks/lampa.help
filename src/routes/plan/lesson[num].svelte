@@ -29,7 +29,7 @@
   import Lesson from '$lib/lesson.svelte';
 
   export let lesson;
-
+	const section = "Old Testament";
 </script>
 
-<Lesson {lesson}/>
+<Lesson {section} {lesson}/>
