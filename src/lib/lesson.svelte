@@ -1,5 +1,8 @@
 <script>
-  import { WiredCard } from 'wired-elements';
+  import 'wired-elements/lib/wired-card.js';
+  import 'wired-elements/lib/wired-divider.js';
+  import LessonHeader from './lesson-header.svelte';
+
   export let section;
   export let lesson;
 
@@ -9,15 +12,11 @@
 </script>
 
 <article class="lesson">
-  <header>
-    <wired-card fill="#ffff0b">
-      <h4>Scripture:</h4> 
-      <p>{lesson['Scripture']}</p>
-    </wired-card>  
-
-    <h3>{section} #{lesson['Number']}</h3>
-    <h1>{lesson['Title']}</h1>
-  </header>
+  <LessonHeader
+    lessonNumber={lesson['Number']}
+    lessonTitle={lesson['Title']}
+    lessonSection={section}
+    lessonScripture={lesson['Scripture']} />
 
   <blockquote class="memory-verse">
     <h3>Memory Verse</h3>
@@ -30,22 +29,22 @@
   <h2>{lesson['Truth']}</h2>
 
   <section>
-    <h4>Summary</h4>
+    <h3>Summary</h3>
     <p>{@html sunitize(lesson['Summary'])}</p>
 
     <wired-card elevation="2">
-      <h4>God's character</h4>
+      <h3>God's character</h3>
       <p>{lesson['Character']}</p>
     </wired-card>
   </section>
 
   <section>
-    <h4>Application</h4>
+    <h3>Application</h3>
     <p>{@html sunitize(lesson['Application'])}</p>
   </section>
 
   <footer>
-    <h4>Song suggestions</h4>
+    <h3>Song suggestions</h3>
     <ul>
     {#each lesson['Songs'] as song}
       <li>{song}</li>
@@ -60,17 +59,10 @@
     clear: both;
   }
 
-  header wired-card {
-    float: left;
-    width: 100px;
-    text-align: center;
+  h2 {
+    color: var(--orange);
   }
-  header wired-card :is(h4, p) {
-    margin: 0;
-  }
-  header :is(h1,h3) {
-    text-align: center;
-  }
+
   .memory-verse {
     float: right;
     width: 40%;
