@@ -2,24 +2,29 @@
 	font-family: 'Open Sans', sans-serif;
 	--font-header: 'Neucha', cursive;
 	--pure-white: #ffffff;
+	--yellow: #ffff0b;
+	--green: #b2ff46;
+	--blue: #7ed4f8;
+	--pink: #ff82e4;
+	--dark-green: #08dba1;
+	--orange: #fd791d;
 	--primary-color: #b9c6d2;
 	--secondary-color: #d0dde9;
 	--tertiary-color: #edf0f8;
 	--accent-color: #ff3e00;
-	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
-	--background-without-opacity: rgba(255, 255, 255, 0.7);
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
+	--heading-color: #840000;
+	--text-color: #333333;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
+	color: var(--text-color)
 }
 
 h1,h2,h3 {
 	font-family: var(--font-header);
+	color: var(--heading-color);
 }
 
 a {
