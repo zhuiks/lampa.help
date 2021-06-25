@@ -1,5 +1,5 @@
 <script context="module">
-  import { getYamlData } from '$lib/get-data.js';
+  import { getYamlData, padNumber } from '$lib/get-data.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
@@ -29,9 +29,8 @@
             }
           } 
         } else if (Number.isInteger(list)) {
-          const paddedLength = 2; //Math.ceil(Math.log10(list+1));
           for(let i=1; i<=list; i++) {
-            const res = await getYamlData(page, `${prefix}lesson-${i.toString().padStart(paddedLength, 0)}`);
+            const res = await getYamlData(page, `${prefix}lesson-${padNumber(i)}`);
 
             if (res.ok) {
               lessons.push({

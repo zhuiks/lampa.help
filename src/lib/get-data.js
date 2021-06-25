@@ -18,3 +18,9 @@ export async function getYamlData(pageObject, path) {
     error: new Error(`Could not load ${url}`)
   };
 }
+
+
+export function padNumber(num, max=50) {
+  const paddedLength = Math.ceil(Math.log10(max+1));
+  return num.toString().padStart(paddedLength, 0)
+}
