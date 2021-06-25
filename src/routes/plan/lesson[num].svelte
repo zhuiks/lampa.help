@@ -1,5 +1,5 @@
 <script context="module">
-  import { getYamlData } from '$lib/get-data.js';
+	import { getYamlData } from '$lib/get-data.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
@@ -8,23 +8,23 @@
 		const url = `http://localhost:3000/lessons/lesson-${page.params.num}.yml`;
 		const res = await getYamlData(url);
 
-		if (res.ok) {
-      return {
-				props: {
-					lesson: res.data 
-				}
-			};
+		if (!res.ok) {
+			return res;
 		}
-
-    return res;
+		
+		return {
+			props: {
+				lesson: res.data
+			}
+		};
 	}
 </script>
 
 <script>
-  import Lesson from '$lib/lesson.svelte';
+	import Lesson from '$lib/lesson.svelte';
 
-  export let lesson;
-	const section = "Old Testament";
+	export let lesson;
+	const section = 'Old Testament';
 </script>
 
-<Lesson {section} {lesson}/>
+<Lesson {section} {lesson} />
