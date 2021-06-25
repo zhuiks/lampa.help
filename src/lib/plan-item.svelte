@@ -6,4 +6,8 @@
   export let link;
 </script>
 
-<strong>#{num}</strong> <wired-link href={link}>{title}</wired-link>
+{#if num}
+  <strong>#{num}</strong> 
+{/if}
+
+<wired-link href={link}>{title}</wired-link>
