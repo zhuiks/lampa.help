@@ -11,3 +11,9 @@
 {/if}
 
 <wired-link href={link}>{title}</wired-link>
+
+<style>
+  wired-link {
+    --wired-link-decoration-color: var(--orange);
+  }
+</style>

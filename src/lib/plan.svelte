@@ -9,5 +9,7 @@
 
 <h1>{name}</h1>
 {#if sections}
-  <PlanSection section="Bible" items={sections}/>
+  {#each sections as {section, items}}
+    <PlanSection {section} {items}/>  
+  {/each}
 {/if}
