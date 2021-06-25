@@ -1,15 +1,12 @@
 <script>
 	import 'wired-elements/lib/wired-card.js';
-	import 'wired-elements/lib/wired-divider.js';
+	// import 'wired-elements/lib/wired-divider.js';
 	import LessonHeader from './lesson-header.svelte';
 	import MemoryVerse from './memory-verse.svelte';
 
 	export let section;
 	export let lesson;
 
-	function sunitize(str) {
-		return str.replace(/</g, '').replace(/>/g, '').replace('\n', '<br/>');
-	}
 </script>
 
 <article class="lesson">
@@ -27,7 +24,9 @@
 
 	<section>
 		<h3>Summary</h3>
-		<p>{@html sunitize(lesson['Summary'])}</p>
+		{#each lesson['Summary'].split('\n') as paragraph}
+			<p>{paragraph}</p>
+		{/each}
 	</section>
 
 	<section class="character">
@@ -39,16 +38,20 @@
 
 	<section>
 		<h3>Application</h3>
-		<p>{@html sunitize(lesson['Application'])}</p>
+		{#each lesson['Application'].split('\n') as paragraph}
+			<p>{paragraph}</p>
+		{/each}
 	</section>
 
 	<footer>
+		{#if lesson['Songs']}
 		<h3>Song suggestions</h3>
 		<ul>
 			{#each lesson['Songs'] as song}
 				<li>{song}</li>
 			{/each}
 		</ul>
+		{/if}
 	</footer>
 </article>
 

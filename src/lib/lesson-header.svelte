@@ -6,6 +6,7 @@
   export let lessonSection;
   export let lessonScripture;
 
+  const subHeading = (lessonSection || '') + (lessonNumber ? `#${lessonNumber}` : '');
   var passage, passageNotes;
 
   const scriptureMatch = /^(?<passage>.*?)\s*(?:\((?<notes>.+)\))?\s*$/.exec(lessonScripture);
@@ -13,7 +14,7 @@
     passage = scriptureMatch[1];
     passageNotes = scriptureMatch.length > 2 ? scriptureMatch[2] : undefined;
   }
-
+  
 </script>
 
 <header>
@@ -27,7 +28,10 @@
   </wired-card>
   {/if}  
 
-  <h4>{lessonSection} #{lessonNumber}</h4>
+  {#if subHeading}
+  <h4>{subHeading}</h4>
+  {/if}
+  
   <h1>{lessonTitle}</h1>
 </header>
 <style>
