@@ -6,7 +6,7 @@
 	 */
 	export async function load({ page, fetch, session, context }) {
 		const prefix = 'lessons/';
-		const resAbout = await getYamlData(page, `${prefix}about`);
+		const resAbout = await getYamlData(`${prefix}about`, {page, fetch});
 
 		if (!resAbout.ok) {
 			return resAbout;
@@ -19,7 +19,7 @@
 
 				if (Array.isArray(details)) {
 					for (let i = 0; i < details.length; i++) {
-						const res = await getYamlData(page, `${prefix}${details[i]}`);
+						const res = await getYamlData(`${prefix}${details[i]}`, {page, fetch});
 
 						if (res.ok) {
 							lessons.push({
@@ -34,8 +34,8 @@
           if (Number.isInteger(totalLessons)) {
 						for (let i = 1; i <= totalLessons; i++) {
 							const res = await getYamlData(
-								page,
-								`${prefix}${sectionKey.toLowerCase().replace('_', '-')}-${padNumber(i)}`
+								`${prefix}${sectionKey.toLowerCase().replace('_', '-')}-${padNumber(i)}`,
+                {page, fetch}
 							);
 
 							if (res.ok) {

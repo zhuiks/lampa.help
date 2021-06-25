@@ -6,7 +6,7 @@
 	 */
 	export async function load({ page, fetch, session, context }) {
 		const filepath = `lessons/lesson-${padNumber(page.params.num)}`;
-		const res = await getYamlData(page, filepath);
+		const res = await getYamlData(filepath, {page, fetch});
 
 		if (!res.ok) {
 			return res;
