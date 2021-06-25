@@ -1,5 +1,5 @@
 <script>
-	// import PlanItem from './plan-item.svelte';
+  import PlanItem from './plan-item.svelte';
 
 	export let expanded = true;
 	export let section;
@@ -17,9 +17,9 @@
 		{#each items as item}
 			<li>
 				{#if item.items}
-					<svelte:self {...item}/>
+					<svelte:self {...item} />
 				{:else}
-					<strong>#{item.num}</strong> {item.title}
+					<PlanItem {...item} />
 				{/if}
 			</li>
 		{/each}

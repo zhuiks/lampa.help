@@ -37,6 +37,7 @@
               lessons.push({
                 num: res.data['Number'],
                 title: res.data['Title'],
+                link: `plan/lesson${i}`,
               });
             }
           } 
