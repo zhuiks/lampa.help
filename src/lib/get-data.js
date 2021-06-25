@@ -1,6 +1,7 @@
 import { parse } from 'yaml';
 
-export async function getYamlData(url) {
+export async function getYamlData(pageObject, path) {
+  const url = `http://${pageObject.host}/${path}.yml`;
   const res = await fetch(url);
 
   if (res.ok) {

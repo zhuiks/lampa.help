@@ -5,10 +5,10 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const prefix = `http://localhost:3000/lessons/`;
-		const resAbout = await getYamlData(`${prefix}about.yml`);
+		const prefix = "lessons/";
+		const resAbout = await getYamlData(page, `${prefix}about`);
 
-		if (!resAbout.ok) {
+    if (!resAbout.ok) {
 			return resAbout;
 		}
 
@@ -19,7 +19,7 @@
 
         if (Array.isArray(list)) {
           for(let i=0; i<list.length; i++) {
-            const res = await getYamlData(`${prefix}${list[i]}.yml`);
+            const res = await getYamlData(page, `${prefix}${list[i]}`);
 
             if (res.ok) {
               lessons.push({
@@ -31,7 +31,7 @@
         } else if (Number.isInteger(list)) {
           const paddedLength = 2; //Math.ceil(Math.log10(list+1));
           for(let i=1; i<=list; i++) {
-            const res = await getYamlData(`${prefix}lesson-${i.toString().padStart(paddedLength, 0)}.yml`);
+            const res = await getYamlData(page, `${prefix}lesson-${i.toString().padStart(paddedLength, 0)}`);
 
             if (res.ok) {
               lessons.push({

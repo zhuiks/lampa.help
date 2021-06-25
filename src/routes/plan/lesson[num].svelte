@@ -5,8 +5,8 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const url = `http://localhost:3000/lessons/lesson-${page.params.num}.yml`;
-		const res = await getYamlData(url);
+		const filepath = `lessons/lesson-${page.params.num}`;
+		const res = await getYamlData(page, filepath);
 
 		if (!res.ok) {
 			return res;
