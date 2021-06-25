@@ -7,7 +7,9 @@ Sections:
   - Old_Testament:
       Name: Old Testament 
       Lessons: 3
-  # - New Testament: 50
+  - New_Testament: 
+      Name: New Testament
+      Lessons: 2
   - Special: 
     - christmas
     - easter

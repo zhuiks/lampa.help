@@ -1,10 +1,12 @@
 <script context="module">
-	import { getLessonFilename, getYamlData, padNumber } from '$lib/get-data.js';
+	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
+		const prefix = 'lessons/';
+
 		const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(page.params.lesson);
 		if (!match) {
 			return {
@@ -14,16 +16,30 @@
 		}
 
 		const { section, num, special } = match.groups;
-		const filepath = `lessons/${special ? special : getLessonFilename(section, num)}`;
-		const res = await getYamlData(filepath, {page, fetch});
-		console.log(res)
-		if (!res.ok) {
-			return res;
+		const filepath = `${prefix}${special ? special : getLessonFilename(section, num)}`;
+		const resLesson = await getYamlData(filepath, {page, fetch});
+
+		if (!resLesson.ok) {
+			return resLesson;
+		}
+
+		var sectionName;
+
+		if (section) {
+			const resAbout = await getYamlData(`${prefix}about`, {page, fetch});
+
+			if (resAbout.ok) {
+				const sectionData = resAbout.data['Sections'].find(s => !!s[section]);
+				if (sectionData) {
+					sectionName = sectionData[section]['Name'];
+				}
+			}
 		}
 		
 		return {
 			props: {
-				lesson: res.data
+				lesson: resLesson.data,
+				section: sectionName,
 			}
 		};
 	}
@@ -33,7 +49,7 @@
 	import Lesson from '$lib/lesson.svelte';
 
 	export let lesson;
-	const section = 'Old Testament';
+	export let section;
 </script>
 
 <Lesson {section} {lesson} />

@@ -6,7 +6,7 @@
   export let lessonSection;
   export let lessonScripture;
 
-  const subHeading = (lessonSection || '') + (lessonNumber ? `#${lessonNumber}` : '');
+  const subHeading = (lessonSection || '') + (lessonNumber ? ` #${lessonNumber}` : '');
   var passage, passageNotes;
 
   const scriptureMatch = /^(?<passage>.*?)\s*(?:\((?<notes>.+)\))?\s*$/.exec(lessonScripture);
@@ -31,7 +31,7 @@
   {#if subHeading}
   <h4>{subHeading}</h4>
   {/if}
-  
+
   <h1>{lessonTitle}</h1>
 </header>
 <style>
