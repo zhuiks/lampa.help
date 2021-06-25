@@ -24,3 +24,7 @@ export function padNumber(num, max=50) {
   const paddedLength = Math.ceil(Math.log10(max+1));
   return num.toString().padStart(paddedLength, 0)
 }
+
+export function getLessonFilename(sectionKey, lessonNumber) {
+  return `${sectionKey.toLowerCase().replace('_', '-')}-${padNumber(lessonNumber)}`;
+}

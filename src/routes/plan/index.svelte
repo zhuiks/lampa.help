@@ -1,5 +1,5 @@
 <script context="module">
-	import { getYamlData, padNumber } from '$lib/get-data.js';
+	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
@@ -34,7 +34,7 @@
           if (Number.isInteger(totalLessons)) {
 						for (let i = 1; i <= totalLessons; i++) {
 							const res = await getYamlData(
-								`${prefix}${sectionKey.toLowerCase().replace('_', '-')}-${padNumber(i)}`,
+								`${prefix}${getLessonFilename(sectionKey, i)}`,
                 {page, fetch}
 							);
 
