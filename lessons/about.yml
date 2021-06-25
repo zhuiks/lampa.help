@@ -4,7 +4,9 @@ Description: |-
   2 year program for younger children, offering 50 Old Testament lessons and 50 New Testament lessons
 
 Sections:
-  - Old Testament: 3
+  - Old_Testament:
+      Name: Old Testament 
+      Lessons: 3
   # - New Testament: 50
   - Special: 
     - christmas
