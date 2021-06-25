@@ -1,27 +1,22 @@
 <script context="module">
-  import { parse } from 'yaml';
+  import { getYamlData } from '$lib/get-data.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
 		const url = `http://localhost:3000/lessons/lesson-${page.params.num}.yml`;
-		const res = await fetch(url);
+		const res = await getYamlData(url);
 
 		if (res.ok) {
-      const data = await res.text();
-
       return {
 				props: {
-					lesson: parse(data) 
+					lesson: res.data 
 				}
 			};
 		}
 
-    return {
-			status: res.status,
-			error: new Error(`Could not load ${url}`)
-		};
+    return res;
 	}
 </script>
 
