@@ -1,16 +1,16 @@
 <script>
   export let name;
-  export let lessons = [];
+  export let sections = [];
 
-  console.log(lessons);
+  console.log(sections);
 </script>
 
 <h1>{name}</h1>
-{#if lessons}
+{#if sections}
   <table>
-  {#each lessons as lesson}
+  {#each sections as sectionData}
     <tr>
-      <td>lesson</td>
+      <td>{sectionData.section}</td>
     </tr>
   {/each}
   </table>

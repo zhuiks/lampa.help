@@ -5,17 +5,55 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const url = `http://localhost:3000/lessons/about.yml`;
-		const res = await getYamlData(url);
+		const prefix = `http://localhost:3000/lessons/`;
+		const resAbout = await getYamlData(`${prefix}about.yml`);
 
-		if (!res.ok) {
-			return res;
+		if (!resAbout.ok) {
+			return resAbout;
 		}
+
+    const sections = await Promise.all(
+      resAbout.data['Sections'].map(async sectionData => {
+        const [sectionKey, list] = Object.entries(sectionData)[0];
+        let lessons = [];
+
+        if (Array.isArray(list)) {
+          for(let i=0; i<list.length; i++) {
+            const res = await getYamlData(`${prefix}${list[i]}.yml`);
+
+            if (res.ok) {
+              lessons.push({
+                num: res.data['Number'],
+                title: res.data['Title'],
+              });
+            }
+          } 
+        } else if (Number.isInteger(list)) {
+          const paddedLength = 2; //Math.ceil(Math.log10(list+1));
+          for(let i=1; i<=list; i++) {
+            const res = await getYamlData(`${prefix}lesson-${i.toString().padStart(paddedLength, 0)}.yml`);
+
+            if (res.ok) {
+              lessons.push({
+                num: res.data['Number'],
+                title: res.data['Title'],
+              });
+            }
+          } 
+        }
+
+        return {
+          section: sectionKey,
+          lessons
+        }
+      })
+    );
 
     return {
 			props: {
-        name: res.data['Name'],
-				lessons: res.data['Sections']
+        name: resAbout.data['Name'],
+        desc: resAbout.data['Description'],
+				sections
 			}
 		};
 	}
@@ -25,7 +63,7 @@
   import Plan from '$lib/plan.svelte';
   
   export let name;
-  export let lessons;
+  export let sections;
 </script>
 
-<Plan {name} {lessons}/>
+<Plan {name} {sections}/>
