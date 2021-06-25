@@ -44,7 +44,7 @@
 
         return {
           section: sectionKey,
-          lessons
+          items: lessons
         }
       })
     );

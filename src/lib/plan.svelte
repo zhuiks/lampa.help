@@ -1,4 +1,6 @@
 <script>
+  import PlanSection from "./plan-section.svelte";
+
   export let name;
   export let sections = [];
 
@@ -7,11 +9,5 @@
 
 <h1>{name}</h1>
 {#if sections}
-  <table>
-  {#each sections as sectionData}
-    <tr>
-      <td>{sectionData.section}</td>
-    </tr>
-  {/each}
-  </table>
+  <PlanSection section="Bible" items={sections}/>
 {/if}
