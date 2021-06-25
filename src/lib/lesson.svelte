@@ -56,11 +56,6 @@
 </article>
 
 <style>
-	.lesson {
-		padding: 1em 2em;
-		clear: both;
-	}
-
 	h2 {
 		color: var(--orange);
 	}
