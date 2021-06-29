@@ -52,7 +52,7 @@
     padding: 0;
 		list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-auto-flow: row;
     grid-gap: 0.5em 1.5em;
 	}

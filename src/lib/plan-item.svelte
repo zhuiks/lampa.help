@@ -3,6 +3,7 @@
 
   export let num;
   export let title;
+  export let passage='';
   export let link;
 </script>
 
@@ -12,8 +13,13 @@
 
 <wired-link href={link}>{title}</wired-link>
 
+<span class="passage">{passage.split(' (')[0]}</span>
+
 <style>
   wired-link {
     --wired-link-decoration-color: var(--orange);
+  }
+  .passage {
+    color: #999;
   }
 </style>

@@ -24,6 +24,7 @@
 						if (res.ok) {
 							lessons.push({
 								title: res.data['Title'],
+								passage: res.data['Scripture'],
 								link: `plan/${details[i]}`
 							});
 						}
@@ -42,6 +43,7 @@
 								lessons.push({
 									num: res.data['Number'],
 									title: res.data['Title'],
+									passage: res.data['Scripture'],
 									link: `plan/${sectionKey}/lesson${i}`
 								});
 							}
