@@ -20,14 +20,16 @@
   }
   .memory-verse h3{
     position: absolute;
-    top: -3em;
+    top: -2.5em;
     right: 1em;
-    transform: rotate(-2deg);
+    transform: rotate(2deg);
+    color: #999;
+    font-weight: normal;
   }
   .memory-verse wired-card {
     padding: 0 1em;
     text-align: center;
-    transform: rotate(-1deg);
+    transform: rotate(1deg);
   }
 
 </style>

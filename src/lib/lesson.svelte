@@ -28,7 +28,7 @@
 
 	<MemoryVerse verse={lesson['Verse']} />
 
-	<h3>Main Truth</h3>
+	<h3 class="truth">Main Truth</h3>
 	<h2>{lesson['Truth']}</h2>
 
 	<section>
@@ -71,10 +71,24 @@
 </article>
 
 <style>
+	.lesson {
+		max-width: 1024px;
+		margin: 0 auto;
+	}
 	h2 {
 		color: var(--orange);
+		margin-top: 0;
+		margin-bottom: 3.5rem;
 	}
-
+	h3.truth {
+		clear: left;
+		margin-top: 5.5rem;
+		margin-bottom: 0;
+		text-align: center;
+		font-weight: normal;
+		color: #999;
+		width: 180px
+	}
 	.character {
     width: 100%;
     display: flex;

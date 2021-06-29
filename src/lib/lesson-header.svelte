@@ -19,14 +19,16 @@
 
 <header>
   {#if passage}
-  <wired-card fill="#ffff0b" class="scripture-passage">
-    <h3>Scripture:</h3> 
-    <p>{passage}</p>
+  <div  class="scripture-passage">
+    <wired-card fill="#ffff0b">
+      <h3>Scripture:</h3> 
+      <p>{passage}</p>
+    </wired-card>
     {#if passageNotes}
-    <p class="notes">* {passageNotes}</p>
+      <p class="notes">* {passageNotes}</p>
     {/if}
-  </wired-card>
-  {/if}  
+  </div>
+{/if}  
 
   {#if subHeading}
   <h4>{subHeading}</h4>
@@ -37,7 +39,7 @@
 <style>
   h1 {
     text-align: center;
-    margin-top: 0.67em;
+    margin-top: 0.25em;
     margin-bottom: 1.5em;
   }
   h4 {
@@ -47,16 +49,21 @@
   }
   .scripture-passage {
     float: left;
-    width: 100px;
+    max-width: 10em;
     text-align: center;
   }
-  .scripture-passage :is(h3, p) {
-    margin: 0;
+  .scripture-passage wired-card {
+    min-width: 5em;
   }
   .scripture-passage h3 {
+    margin: 0;
     font-size: 1em;
+  }
+  .scripture-passage p {
+    margin: 0;
   }
   .notes {
     font-size: 0.8em;
+    margin: 0;
   }
 </style>

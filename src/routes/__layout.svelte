@@ -16,7 +16,7 @@
 <style>
 
   main {
-    padding: 1em 1.5em;
+    padding: 3em 1.5em 1em;
   }
   header {
     background: var(--blue);
