@@ -5,7 +5,7 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const prefix = 'en-2year/';
+		const prefix = `en-${page.params.type}/`;
 
 		const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(page.params.lesson);
 		if (!match) {

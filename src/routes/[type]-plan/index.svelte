@@ -5,7 +5,8 @@
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch, session, context }) {
-		const prefix = 'en-2year/';
+		const planType = page.params.type;
+		const prefix = `en-${planType}/`;
 		const resAbout = await getYamlData(`${prefix}about`, {page, fetch});
 		
 		if (!resAbout.ok) {
@@ -25,7 +26,7 @@
 							lessons.push({
 								title: res.data['Title'],
 								passage: res.data['Scripture'],
-								link: `plan/${details[i]}`
+								link: `${planType}-plan/${details[i]}`
 							});
 						}
 					}
@@ -44,7 +45,7 @@
 									num: res.data['Number'],
 									title: res.data['Title'],
 									passage: res.data['Scripture'],
-									link: `plan/${sectionKey}/lesson${i}`
+									link: `${planType}-plan/${sectionKey}/lesson${i}`
 								});
 							}
 						}
