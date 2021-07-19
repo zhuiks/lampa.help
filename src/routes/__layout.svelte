@@ -3,7 +3,7 @@
 </script>
 
 <header>
-  <h5 class="slogan"><a href="/">Bright Ideas for Kid's Bible Lessons</a></h5>
+  <h5 class="slogan"><a href="/">Chronological Free Bible Lessons for Kids</a></h5>
 </header>
 <main>
   <slot/>
