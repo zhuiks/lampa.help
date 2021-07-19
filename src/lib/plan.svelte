@@ -3,8 +3,6 @@
 
   export let name;
   export let sections = [];
-
-  console.log(sections);
 </script>
 
 <h1>{name}</h1>

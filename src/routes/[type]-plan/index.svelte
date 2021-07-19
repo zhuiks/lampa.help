@@ -7,7 +7,7 @@
 	export async function load({ page, fetch, session, context }) {
 		const prefix = 'en-2year/';
 		const resAbout = await getYamlData(`${prefix}about`, {page, fetch});
-
+		
 		if (!resAbout.ok) {
 			return resAbout;
 		}
