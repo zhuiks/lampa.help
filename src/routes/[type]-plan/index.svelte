@@ -1,32 +1,30 @@
 <script context="module">
-	import { setPlanData, getLessonFilename, getYamlData } from '$lib/get-data.js';
+	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
+	import { currentPlan } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch}) {
+	export async function load({ page, fetch, context}) {
 		const planType = page.params.type;
-		const planData = await setPlanData(fetch, planType);
-		if (!planData.ready) {
-			return planData;
-		}
-		
-		const prefix = `en-${planType}/`;
+		currentPlan.set(planType);
+
+		const currentPlanData = context.plans[planType];
 
 		const sections = await Promise.all(
-			planData[planType].sections.map(async (sectionData) => {
+			currentPlanData.sections.map(async (sectionData) => {
 				const [sectionKey, details] = Object.entries(sectionData)[0];
 				let lessons = [];
 
 				if (Array.isArray(details)) {
 					for (let i = 0; i < details.length; i++) {
-						const res = await getYamlData(fetch, `${prefix}${details[i]}`);
+						const res = await getYamlData(fetch, `${currentPlanData.filePath}${details[i]}`);
 
 						if (res.ok) {
 							lessons.push({
 								title: res.data['Title'],
 								passage: res.data['Scripture'],
-								link: `${planType}-plan/${details[i]}`
+								link: `${currentPlanData.urlPath}${details[i]}`
 							});
 						}
 					}
@@ -35,14 +33,14 @@
 					
           if (Number.isInteger(totalLessons)) {
 						for (let i = 1; i <= totalLessons; i++) {
-							const res = await getYamlData(fetch, `${prefix}${getLessonFilename(sectionKey, i)}`);
+							const res = await getYamlData(fetch, `${currentPlanData.filePath}${getLessonFilename(sectionKey, i)}`);
 
 							if (res.ok) {
 								lessons.push({
 									num: res.data['Number'],
 									title: res.data['Title'],
 									passage: res.data['Scripture'],
-									link: `${planType}-plan/${sectionKey}/lesson${i}`
+									link: `${currentPlanData.urlPath}${sectionKey}/lesson${i}`
 								});
 							}
 						}

@@ -1,15 +1,17 @@
 import { parse } from 'yaml';
-import { plans, currentPlan } from './store.js';
 
-export async function setPlanData(fetch, planType) {
-  let planData = {};
+
+export async function setPlanData(fetch) {
+  var planData = { ready: true };
+
 
   for (const plan of ['2year', '4year']) {
-    
-		const prefix = `en-${plan}/`;
-    const resAbout = await getYamlData(fetch, `${prefix}about`);
+
+    const filePath = `en-${plan}/`;
+    const resAbout = await getYamlData(fetch, `${filePath}about`);
 
     if (!resAbout.ok) {
+      planData.ready = false;
       return resAbout;
     }
 
@@ -17,14 +19,11 @@ export async function setPlanData(fetch, planType) {
       name: resAbout.data['Name'],
       desc: resAbout.data['Description'],
       sections: resAbout.data['Sections'],
+      urlPath: `${plan}-plan/`,
+      filePath,
     }
 
   }
-
-  plans.set(planData);
-  currentPlan.set(planType);
-
-  planData.ready = true;
 
   return planData;
 }

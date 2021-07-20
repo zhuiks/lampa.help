@@ -1,3 +1,26 @@
+<script context="module">
+	import { setPlanData } from '$lib/get-data.js';
+  import { plans } from '$lib/store.js';
+
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load({ page, fetch}) {
+		const planData = await setPlanData(fetch);
+    if (!planData.ready) {
+			return planData;
+		}
+
+    plans.set(planData);
+
+    return {
+      context: {
+        plans: planData,
+      }
+    }
+  }
+</script>  
+
 <script>
   import '../app.css';
 </script>
