@@ -1,11 +1,19 @@
 <script context="module">
-	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
+	import { setPlanData, getLessonFilename, getYamlData } from '$lib/get-data.js';
+	import { lessonNum } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, session, context }) {
-		const prefix = `en-${page.params.type}/`;
+	export async function load({ page, fetch }) {
+		const planType = page.params.type;
+		const planData = await setPlanData(fetch, planType);
+		if (!planData.ready) {
+			return planData;
+		}
+		lessonNum.set(page.params.lesson);
+
+		const prefix = `en-${planType}/`;
 
 		const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(page.params.lesson);
 		if (!match) {
@@ -17,7 +25,7 @@
 
 		const { section, num, special } = match.groups;
 		const filepath = `${prefix}${special ? special : getLessonFilename(section, num)}`;
-		const resLesson = await getYamlData(filepath, {page, fetch});
+		const resLesson = await getYamlData(fetch, filepath);
 
 		if (!resLesson.ok) {
 			return resLesson;
@@ -26,13 +34,10 @@
 		var sectionName;
 
 		if (section) {
-			const resAbout = await getYamlData(`${prefix}about`, {page, fetch});
+			const sectionData = planData[planType].sections.find(s => !!s[section]);
 
-			if (resAbout.ok) {
-				const sectionData = resAbout.data['Sections'].find(s => !!s[section]);
-				if (sectionData) {
-					sectionName = sectionData[section]['Name'];
-				}
+			if (sectionData) {
+				sectionName = sectionData[section]['Name'];
 			}
 		}
 		

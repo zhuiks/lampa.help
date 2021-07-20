@@ -1,6 +1,35 @@
 import { parse } from 'yaml';
+import { plans, currentPlan } from './store.js';
 
-export async function getYamlData(path, {fetch}) {
+export async function setPlanData(fetch, planType) {
+  let planData = {};
+
+  for (const plan of ['2year', '4year']) {
+    
+		const prefix = `en-${plan}/`;
+    const resAbout = await getYamlData(fetch, `${prefix}about`);
+
+    if (!resAbout.ok) {
+      return resAbout;
+    }
+
+    planData[plan] = {
+      name: resAbout.data['Name'],
+      desc: resAbout.data['Description'],
+      sections: resAbout.data['Sections'],
+    }
+
+  }
+
+  plans.set(planData);
+  currentPlan.set(planType);
+
+  planData.ready = true;
+
+  return planData;
+}
+
+export async function getYamlData(fetch, path) {
   const url = `/lessons/${path}.yml`;
   const res = await fetch(url);
 
@@ -9,7 +38,7 @@ export async function getYamlData(path, {fetch}) {
 
     return {
       ok: res.ok,
-      data: parse(data) 
+      data: parse(data)
     };
   }
 
@@ -20,8 +49,8 @@ export async function getYamlData(path, {fetch}) {
 }
 
 
-export function padNumber(num, max=50) {
-  const paddedLength = Math.ceil(Math.log10(max+1));
+export function padNumber(num, max = 50) {
+  const paddedLength = Math.ceil(Math.log10(max + 1));
   return num.toString().padStart(paddedLength, 0)
 }
 
