@@ -6,7 +6,7 @@
   export let sections = [];
 </script>
 
-<PlanSelect />
+<PlanSelect header />
 {#if sections}
   {#each sections as {section, items}}
     <PlanSection {section} {items}/>  

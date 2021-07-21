@@ -10,7 +10,7 @@
     if (!planData.ready) {
 			return planData;
 		}
-
+    delete(planData.ready);
     plans.set(planData);
 
     return {
@@ -22,6 +22,7 @@
 </script>  
 
 <script>
+  import PlanSelect from '$lib/elements/plan-select.svelte';
   import '../app.css';
 </script>
 
@@ -33,6 +34,7 @@
 </main>
 
 <footer>
+  <PlanSelect />
   (c) 2021
 </footer>
 
