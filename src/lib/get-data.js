@@ -1,13 +1,13 @@
 import { parse } from 'yaml';
 
 
-export async function setPlanData(fetch) {
+export async function setPlanData(fetch, locale) {
   var planData = { ready: true };
 
 
   for (const plan of ['2year', '4year']) {
 
-    const filePath = `en-${plan}/`;
+    const filePath = `${locale}-${plan}/`;
     const resAbout = await getYamlData(fetch, `${filePath}about`);
 
     if (!resAbout.ok) {

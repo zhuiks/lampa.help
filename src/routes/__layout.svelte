@@ -1,21 +1,31 @@
 <script context="module">
 	import { setPlanData } from '$lib/get-data.js';
-  import { plans } from '$lib/store.js';
+  import { plans, locale } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch}) {
-		const planData = await setPlanData(fetch);
+    const lang = page.query.get('lang') || 'en';
+
+    locale.set(lang);
+    const urlParams = `/?lang=${lang}`;
+
+		const planData = await setPlanData(fetch, lang);
     if (!planData.ready) {
 			return planData;
 		}
     delete(planData.ready);
     plans.set(planData);
 
+  
     return {
       context: {
         plans: planData,
+        urlParams,
+      },
+      props: {
+        urlParams,
       }
     }
   }
@@ -24,10 +34,12 @@
 <script>
   import PlanSelect from '$lib/elements/plan-select.svelte';
   import '../app.css';
+
+  export let urlParams;
 </script>
 
 <header>
-  <h5 class="slogan"><a href="/">Chronological Bible Lessons for Kids</a></h5>
+  <h5 class="slogan"><a href="{urlParams}">Chronological Bible Lessons for Kids</a></h5>
 </header>
 <main>
   <slot/>

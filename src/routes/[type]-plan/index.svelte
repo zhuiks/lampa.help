@@ -24,7 +24,7 @@
 							lessons.push({
 								title: res.data['Title'],
 								passage: res.data['Scripture'],
-								link: `${currentPlanData.urlPath}${details[i]}`
+								link: `${currentPlanData.urlPath}${details[i]}${context.urlParams}`
 							});
 						}
 					}
@@ -40,7 +40,7 @@
 									num: res.data['Number'],
 									title: res.data['Title'],
 									passage: res.data['Scripture'],
-									link: `${currentPlanData.urlPath}${sectionKey}/lesson${i}`
+									link: `${currentPlanData.urlPath}${sectionKey}/lesson${i}${context.urlParams}`
 								});
 							}
 						}

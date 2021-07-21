@@ -1,5 +1,5 @@
 <script>
-	import { plans, currentPlan } from '$lib/store.js';
+	import { plans, currentPlan, urlParams } from '$lib/store.js';
 
 	export let header = false;
 </script>
@@ -17,7 +17,7 @@
 				{#if plan[0] == $currentPlan}
 					<strong>{plan[1].name}</strong>
 				{:else}
-					<a href="/{plan[0]}-plan">{plan[1].name}</a>
+					<a href="/{plan[0]}-plan{$urlParams}">{plan[1].name}</a>
 				{/if}
 			</li>
 		{/if}
