@@ -6,9 +6,13 @@
 
 	export let fill = 'yellow';
 
-	const backgroundFill = '#ffff0b';
+	let backgroundFill = fill;
 
 	onMount(async () => {
+		const styles = window.getComputedStyle(document.documentElement);
+		backgroundFill = styles.getPropertyValue(`--${fill}`);
+		console.log(backgroundFill);
+
 		WiredCard = (await import('wired-elements/lib/wired-card.js')).WiredCard;
 	});
 </script>
