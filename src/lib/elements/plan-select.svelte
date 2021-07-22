@@ -11,13 +11,13 @@
 		</li>
 	{/if}
 
-	{#each Object.entries($plans) as plan}
-		{#if !header || (header && plan[0] != $currentPlan)}
+	{#each Object.entries($plans) as [planKey, planData]}
+		{#if !header || (header && planKey != $currentPlan)}
 			<li class="plans__item">
-				{#if plan[0] == $currentPlan}
-					<strong>{plan[1].name}</strong>
+				{#if planKey == $currentPlan}
+					<strong>{planData.name}</strong>
 				{:else}
-					<a href="/{plan[0]}-plan{$urlParams}">{plan[1].name}</a>
+					<a href="/{planKey}-plan{$urlParams}">{planData.name}</a>
 				{/if}
 			</li>
 		{/if}

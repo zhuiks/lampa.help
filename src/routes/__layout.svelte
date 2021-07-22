@@ -33,6 +33,7 @@
 
 <script>
   import PlanSelect from '$lib/elements/plan-select.svelte';
+  import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
   import '../app.css';
 
   export let urlParams;
@@ -47,6 +48,7 @@
 
 <footer>
   <PlanSelect />
+  <LocaleSwitcher />
   (c) 2021
 </footer>
 
