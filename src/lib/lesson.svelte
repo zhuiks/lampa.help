@@ -1,7 +1,4 @@
-<script>
-	import 'wired-elements/lib/wired-card.js';
-	// import 'wired-elements/lib/wired-divider.js';
-	
+<script>	
 	import LessonHeader from './elements/lesson-header.svelte';
 	import MemoryVerse from './elements/memory-verse.svelte';
 	import Character from './elements/character.svelte';

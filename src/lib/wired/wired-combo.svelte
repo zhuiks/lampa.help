@@ -32,7 +32,7 @@
 	wired-combo {
 		font-family: var(--font-header);
 		letter-spacing: 0.1em;
-		--wired-combo-popup-bg: var(--pure-white);
+		--wired-combo-popup-bg: var(--yellow);
 		--wired-item-selected-bg: var(--heading-color);
 	}
 	wired-item {

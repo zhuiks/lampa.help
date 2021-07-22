@@ -74,6 +74,10 @@
 		letter-spacing: 0.1em;
 	}
 	footer {
+    display: flex;
+    min-height: 7em;
+    background-color: var(--green);
+    padding: 1em 1.5em;
 		margin-top: auto;
 	}
 </style>
