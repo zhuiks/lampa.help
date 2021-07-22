@@ -1,14 +1,14 @@
 <script>
-	import 'wired-elements/lib/wired-card.js';
+	import WiredCard from '$lib/wired/wired-card.svelte'
 
 	export let verse;
 </script>
 
 <blockquote class="memory-verse">
 	<h3>Memory Verse</h3>
-	<wired-card fill="#b2ff46">
+	<WiredCard fill="green">
 		<p>{verse}</p>
-	</wired-card>
+	</WiredCard>
 </blockquote>
 
 <style>
@@ -16,18 +16,18 @@
 		float: right;
 		width: 40%;
 		position: relative;
+		transform: rotate(1deg);
 	}
 	.memory-verse h3 {
 		position: absolute;
 		top: -2.5em;
 		right: 1em;
-		transform: rotate(2deg);
+		transform: rotate(1deg);
 		color: #999;
 		font-weight: normal;
 	}
-	.memory-verse wired-card {
+	.memory-verse p {
 		padding: 0 1em;
 		text-align: center;
-		transform: rotate(1deg);
 	}
 </style>

@@ -1,5 +1,5 @@
 <script>
-	import 'wired-elements/lib/wired-card.js';
+	import WiredCard from '$lib/wired/wired-card.svelte';
 
 	export let lessonNumber;
 	export let lessonTitle;
@@ -19,10 +19,10 @@
 <header>
 	{#if passage}
 		<div class="scripture-passage">
-			<wired-card fill="#ffff0b">
+			<WiredCard>
 				<h3>Scripture:</h3>
 				<p>{passage}</p>
-			</wired-card>
+			</WiredCard>
 			{#if passageNotes}
 				<p class="notes">* {passageNotes}</p>
 			{/if}
@@ -51,9 +51,6 @@
 		float: left;
 		max-width: 10em;
 		text-align: center;
-	}
-	.scripture-passage wired-card {
-		min-width: 5em;
 	}
 	.scripture-passage h3 {
 		margin: 0;
