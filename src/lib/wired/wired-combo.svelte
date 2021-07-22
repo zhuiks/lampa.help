@@ -27,3 +27,15 @@
 		{/each}
 	</wired-combo>
 {/if}
+
+<style>
+	wired-combo {
+		font-family: var(--font-header);
+		letter-spacing: 0.1em;
+		--wired-combo-popup-bg: var(--pure-white);
+		--wired-item-selected-bg: var(--heading-color);
+	}
+	wired-item {
+		letter-spacing: 0.1em;
+	}
+</style>

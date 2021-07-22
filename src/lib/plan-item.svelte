@@ -1,5 +1,5 @@
 <script>
-  import 'wired-elements/lib/wired-link.js';
+  import WiredLink from './wired/wired-link.svelte';
 
   export let num;
   export let title;
@@ -11,14 +11,11 @@
   <strong>#{num}</strong> 
 {/if}
 
-<wired-link href={link}>{title}</wired-link>
+<WiredLink href={link}>{title}</WiredLink>
 
 <span class="passage">{passage.split(' (')[0]}</span>
 
 <style>
-  wired-link {
-    --wired-link-decoration-color: var(--orange);
-  }
   .passage {
     color: #999;
   }
