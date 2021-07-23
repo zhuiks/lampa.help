@@ -1,8 +1,7 @@
 <script>
   import { locale } from '$lib/store.js';
   import WiredCombo from '$lib/wired/wired-combo.svelte';
-  import { navigating, page, session } from '$app/stores';
-  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
 
   const avaliableLocales = {
     'en': 'English',
@@ -10,14 +9,12 @@
   };
 
   function handleLocaleChage(e) {
-    const {path, query} = $page;
+    const {host, path, query} = $page;
     const newLocale = e.detail.value;
     if (query.get('lang') != newLocale) {
       query.set('lang', newLocale);
-      const newLocation = `${path}/?${query.toString()}`;
-      goto(newLocation).catch((error) => {
-        console.error('Failed to navigate to', newLocation);
-      });
+      const newLocation = `//${host}${path}/?${query.toString()}`;
+      document.location.href = newLocation;
     }
   }
 </script>

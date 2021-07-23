@@ -1,15 +1,18 @@
 <script context="module">
 	import { setPlanData } from '$lib/get-data.js';
-	import { plans, locale } from '$lib/store.js';
+	import { plans, currentPlan, locale } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
 	export async function load({ page, fetch }) {
 		const lang = page.query.get('lang') || 'en';
-
+		
 		locale.set(lang);
 		const urlParams = `/?lang=${lang}`;
+		
+		const planType = page.params.type;
+		currentPlan.set(planType);
 
 		const planData = await setPlanData(fetch, lang);
 		if (!planData.ready) {
@@ -21,6 +24,7 @@
 		return {
 			context: {
 				plans: planData,
+				currentPlan: planType ? planData[planType] : false,
 				urlParams
 			},
 			props: {

@@ -1,15 +1,11 @@
 <script context="module">
 	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
-	import { currentPlan } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, context}) {
-		const planType = page.params.type;
-		currentPlan.set(planType);
-
-		const currentPlanData = context.plans[planType];
+	export async function load({ fetch, context }) {
+		const currentPlanData = context.currentPlan || context.plans[0];
 
 		const sections = await Promise.all(
 			currentPlanData.sections.map(async (sectionData) => {
@@ -30,10 +26,13 @@
 					}
 				} else {
 					const totalLessons = details['Lessons'];
-					
-          if (Number.isInteger(totalLessons)) {
+
+					if (Number.isInteger(totalLessons)) {
 						for (let i = 1; i <= totalLessons; i++) {
-							const res = await getYamlData(fetch, `${currentPlanData.filePath}${getLessonFilename(sectionKey, i)}`);
+							const res = await getYamlData(
+								fetch,
+								`${currentPlanData.filePath}${getLessonFilename(sectionKey, i)}`
+							);
 
 							if (res.ok) {
 								lessons.push({

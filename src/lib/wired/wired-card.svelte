@@ -14,7 +14,6 @@
 		//FIXME: it's not efficient to request styles for every component.
 		const styles = window.getComputedStyle(document.documentElement);
 		backgroundFill = styles.getPropertyValue(`--${fill}`);
-		console.log(backgroundFill);
 
 		WiredCard = (await import('wired-elements/lib/wired-card.js')).WiredCard;
 	});
