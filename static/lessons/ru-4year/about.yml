@@ -1,1 +1,12 @@
-Name: 'Обзор программы: Через Библию за 4 года'
+Name: Через Библию за 4 года
+
+Description: |-
+  Уроки для старшей воскресной школы
+
+Sections:
+  - Old_Testament:
+      Name: Ветхий Завет 
+      Lessons: 100
+  - New_Testament: 
+      Name: Новый Завет
+      Lessons: 100
