@@ -1,3 +1,5 @@
+import svelteFluent from '@nubolab-ffwd/svelte-fluent/rollup-plugin';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
@@ -6,7 +8,10 @@ const config = {
 		},
 		ssr: false,
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
+		target: '#svelte',
+		vite: {
+      plugins: [svelteFluent()],
+    }
 	}
 };
 

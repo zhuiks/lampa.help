@@ -1,4 +1,5 @@
 <script>
+	import { Localized } from '@nubolab-ffwd/svelte-fluent';
 	import WiredCard from '$lib/wired/wired-card.svelte';
 
 	export let lessonNumber;
@@ -20,7 +21,7 @@
 	{#if passage}
 		<div class="scripture-passage">
 			<WiredCard>
-				<h3>Scripture:</h3>
+				<h3><Localized id="scripture" /></h3>
 				<p>{passage}</p>
 			</WiredCard>
 			{#if passageNotes}

@@ -9,6 +9,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
+    "@nubolab-ffwd/svelte-fluent": "^0.4.0",
     "@sveltejs/kit": "next",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
@@ -21,6 +22,7 @@
   "dependencies": {
     "@fluent/bundle": "^0.16.1",
     "@fluent/langneg": "^0.5.2",
+    "jsdom": "^16.6.0",
     "rough-notation": "^0.5.1",
     "roughjs": "^4.4.1",
     "svelte-rough-notation": "^0.1.4",

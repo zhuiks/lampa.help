@@ -2,11 +2,7 @@
   import { locale } from '$lib/store.js';
   import WiredCombo from '$lib/wired/wired-combo.svelte';
   import { page } from '$app/stores';
-
-  const avaliableLocales = {
-    'en': 'English',
-    'ru': 'Русский',
-  };
+  import { avaliableLocales } from '$lib/fluent.js';
 
   function handleLocaleChage(e) {
     const {host, path, query} = $page;

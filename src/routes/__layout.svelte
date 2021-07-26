@@ -8,12 +8,12 @@
 	 */
 	export async function load({ page, fetch }) {
 		const lang = page.query.get('lang') || 'en';
-		
+
 		locale.set(lang);
 		const urlParams = `/?lang=${lang}`;
 
 		await prepareResources(fetch);
-		
+
 		const planType = page.params.type;
 		currentPlan.set(planType);
 
@@ -38,25 +38,29 @@
 </script>
 
 <script>
+	import { FluentProvider, Localized } from '@nubolab-ffwd/svelte-fluent';
+	import { generateBundles } from '$lib/fluent';
 	import PlanSelect from '$lib/elements/plan-select.svelte';
 	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
 	import '../app.css';
 
-  export let urlParams;
+	export let urlParams;
 </script>
 
-<header>
-	<h5 class="slogan"><a href={urlParams}>Chronological Bible Lessons for Kids</a></h5>
-</header>
-<main>
-	<slot />
-</main>
+<FluentProvider bundles={generateBundles($locale)}>
+	<header>
+		<h5 class="slogan"><a href={urlParams}><Localized id="slogan" /></a></h5>
+	</header>
+	<main>
+		<slot />
+	</main>
 
-<footer>
-	<PlanSelect />
-	<LocaleSwitcher />
-	(c) 2021
-</footer>
+	<footer>
+		<PlanSelect />
+		<LocaleSwitcher />
+		(c) 2021
+	</footer>
+</FluentProvider>
 
 <style>
 	main {
@@ -81,10 +85,10 @@
 		letter-spacing: 0.1em;
 	}
 	footer {
-    display: flex;
-    min-height: 7em;
-    background-color: var(--green);
-    padding: 1em 1.5em;
+		display: flex;
+		min-height: 7em;
+		background-color: var(--green);
+		padding: 1em 1.5em;
 		margin-top: auto;
 	}
 </style>

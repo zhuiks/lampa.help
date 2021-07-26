@@ -11,7 +11,7 @@ const availableLocaleCodes = Object.keys(avaliableLocales);
 let resources = {};
 export async function prepareResources(fetch) {
   for (const locale of availableLocaleCodes) {
-    const res = fetch(`/locales/${locale}.flt`);
+    const res = await fetch(`/locales/${locale}.flt`);
     if (res.ok) {
       resources[locale] = new FluentResource(await res.text());
     }

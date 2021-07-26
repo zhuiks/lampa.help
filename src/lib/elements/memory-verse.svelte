@@ -1,11 +1,12 @@
 <script>
+	import { Localized } from '@nubolab-ffwd/svelte-fluent';
 	import WiredCard from '$lib/wired/wired-card.svelte'
 
 	export let verse;
 </script>
 
 <blockquote class="memory-verse">
-	<h3>Memory Verse</h3>
+	<h3><Localized id="verse" /></h3>
 	<WiredCard fill="green">
 		<p>{verse}</p>
 	</WiredCard>
