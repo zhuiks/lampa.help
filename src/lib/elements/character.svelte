@@ -1,4 +1,5 @@
 <script>
+	import { Localized } from '@nubolab-ffwd/svelte-fluent';
 	import { onMount } from 'svelte';
   import Annotation from 'svelte-rough-notation';
   
@@ -17,7 +18,7 @@
 	<div>
 			<Annotation bind:visible type="box" padding={10}>
 				<div class="character-wrapper">
-					<h3>God's character:</h3>
+					<h3><Localized id="character" />:</h3>
 					{#each values as item}
 						<div>{item}</div>
 					{/each}
