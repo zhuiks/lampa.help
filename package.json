@@ -19,6 +19,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@fluent/bundle": "^0.16.1",
     "rough-notation": "^0.5.1",
     "roughjs": "^4.4.1",
     "svelte-rough-notation": "^0.1.4",
