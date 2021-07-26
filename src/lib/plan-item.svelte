@@ -1,7 +1,7 @@
 <script>
   import WiredLink from './wired/wired-link.svelte';
 
-  export let num;
+  export let num = '';
   export let title;
   export let passage='';
   export let link;

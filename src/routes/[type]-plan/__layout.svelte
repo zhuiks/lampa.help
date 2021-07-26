@@ -42,7 +42,7 @@
 	import { generateBundles } from '$lib/fluent';
 	import PlanSelect from '$lib/elements/plan-select.svelte';
 	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
-	import '../app.css';
+	import '../../app.css';
 
 	export let urlParams;
 </script>
@@ -63,9 +63,6 @@
 </FluentProvider>
 
 <style>
-	main {
-		padding: 3em 1.5em 1em;
-	}
 	header {
 		background: var(--blue);
 		padding: 0 1.5em;
