@@ -1,4 +1,5 @@
 <script context="module">
+	import { prepareResources } from '$lib/fluent.js';
 	import { setPlanData } from '$lib/get-data.js';
 	import { plans, currentPlan, locale } from '$lib/store.js';
 
@@ -10,6 +11,8 @@
 		
 		locale.set(lang);
 		const urlParams = `/?lang=${lang}`;
+
+		await prepareResources(fetch);
 		
 		const planType = page.params.type;
 		currentPlan.set(planType);
