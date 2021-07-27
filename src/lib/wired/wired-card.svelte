@@ -42,6 +42,7 @@
 	}
 	.card {
 		min-width: var(--min-width, 5em);
+		text-align: center;
 	}
 	.top-tape {
 		position: absolute;

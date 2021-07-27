@@ -1,6 +1,6 @@
 <script>
 	import { Localized } from '@nubolab-ffwd/svelte-fluent';
-	import WiredCard from '$lib/wired/wired-card.svelte'
+	import WiredCard from '$lib/wired/wired-card.svelte';
 
 	export let verse;
 </script>
@@ -14,10 +14,9 @@
 
 <style>
 	.memory-verse {
-		float: right;
-		width: 40%;
 		position: relative;
-		transform: rotate(1deg);
+		text-align: right;
+		margin-inline-end: 0;
 	}
 	.memory-verse h3 {
 		position: absolute;
@@ -30,5 +29,13 @@
 	.memory-verse p {
 		padding: 0 1em;
 		text-align: center;
+	}
+
+	@media screen and (min-width: 600px) {
+		.memory-verse {
+			float: right;
+			width: 40%;
+			transform: rotate(1deg);
+		}
 	}
 </style>

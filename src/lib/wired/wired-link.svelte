@@ -12,11 +12,11 @@
 </script>
 
 {#if prerendering}
-	<a {href}>
+	<a {href} class="link">
 		<slot>{href}</slot>
 	</a>
 {:else}
-	<wired-link {href}>
+	<wired-link {href} class="link">
 		<slot>{href}</slot>
 	</wired-link>
 {/if}

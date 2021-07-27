@@ -40,18 +40,13 @@
 <style>
 	h1 {
 		text-align: center;
-		margin-top: 0.25em;
-		margin-bottom: 1.5em;
+		margin-top: 0.25rem;
+		margin-bottom: 5rem;
 	}
 	h4 {
 		text-align: center;
-		margin-top: 0;
+		margin-top: 2rem;
 		margin-bottom: 0;
-	}
-	.scripture-passage {
-		float: left;
-		max-width: 10em;
-		text-align: center;
 	}
 	.scripture-passage h3 {
 		margin: 0;
@@ -63,5 +58,16 @@
 	.notes {
 		font-size: 0.8em;
 		margin: 0;
+	}
+
+	@media screen and (min-width: 600px) {
+		.scripture-passage {
+			float: left;
+			max-width: 10em;
+		}
+
+		h4 {
+			margin-top: 0;
+		}
 	}
 </style>

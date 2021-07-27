@@ -30,6 +30,7 @@
 		padding-inline-start: 0;
 		width: 100%;
 		display: flex;
+		flex-wrap: wrap;
 		align-items: baseline;
 	}
   .plans__item:not(:first-child) {

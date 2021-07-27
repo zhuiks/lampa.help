@@ -44,11 +44,15 @@
 	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
 	import '../../app.css';
 
+	let scrollY;
+
 	export let urlParams;
 </script>
 
+<svelte:window bind:scrollY />
 <FluentProvider bundles={generateBundles($locale)}>
 	<header>
+		<nav class:visible={scrollY > 60}>tudy - sudy</nav>
 		<h5 class="slogan"><a href={urlParams}><Localized id="slogan" /></a></h5>
 	</header>
 	<main>
@@ -66,9 +70,22 @@
 	header {
 		background: var(--blue);
 		padding: 0 1.5em;
-		height: 52px;
+	}
+	nav {
+		transform: translateY(-100%);
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background: var(--blue);
+		padding: 0.5em 1.5em;
+		z-index: 947;
+	}
+	nav.visible {
+		transform: translateY(0);
 	}
 	header h5 {
+		height: 52px;
 		background: url('/assets/logo.png') no-repeat 0 50%;
 		height: 100%;
 		box-sizing: border-box;
@@ -83,9 +100,16 @@
 	}
 	footer {
 		display: flex;
+		flex-wrap: wrap;
 		min-height: 7em;
 		background-color: var(--green);
 		padding: 1em 1.5em;
 		margin-top: auto;
+	}
+
+	@media screen and (min-width: 600px) {
+		footer {
+			flex-wrap: nowrap;
+		}
 	}
 </style>

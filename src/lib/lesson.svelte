@@ -3,7 +3,7 @@
 	import LessonHeader from './elements/lesson-header.svelte';
 	import MemoryVerse from './elements/memory-verse.svelte';
 	import Character from './elements/character.svelte';
-import LessonApplication from './elements/lesson-application.svelte';
+	import LessonApplication from './elements/lesson-application.svelte';
 
 	export let section;
 	export let lesson;
@@ -56,15 +56,23 @@ import LessonApplication from './elements/lesson-application.svelte';
 	h2 {
 		color: var(--orange);
 		margin-top: 0;
-		margin-bottom: 3.5rem;
+		margin-bottom: 2rem;
 	}
 	h3.truth {
-		clear: left;
-		margin-top: 5.5rem;
+		margin-top: 3rem;
 		margin-bottom: 0;
 		text-align: center;
 		font-weight: normal;
 		color: #999;
 		width: 180px;
+	}
+	@media screen and (min-width: 600px) {
+		h3.truth {
+			clear: left;
+			margin-top: 5.5rem;
+		}
+		h2 {
+			margin-bottom: 3.5rem;
+		}
 	}
 </style>
