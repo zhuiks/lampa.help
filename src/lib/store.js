@@ -4,7 +4,7 @@ export const plans = writable({});
 
 export const currentPlan = writable(null);
 
-export const lessonNum = writable(null);
+export const lessonInfo = writable({});
 
 export const locale = writable('en');
 

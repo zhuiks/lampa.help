@@ -1,27 +1,14 @@
 <script context="module">
 	import { getLessonFilename, getYamlData } from '$lib/get-data.js';
-	import { lessonNum } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch, context }) {
-		const lesson = page.params.lesson;
-		lessonNum.set(lesson);
-
+	export async function load({ fetch, context }) {
+			
 		const currentPlanData = context.currentPlan || context.plans[0];
 
-		const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(
-			lesson
-		);
-		if (!match) {
-			return {
-				status: 404,
-				error: new Error(`Could not load ${page.path}`)
-			};
-		}
-
-		const { section, num, special } = match.groups;
+		const { section, num, special } = context.lesson;
 		const filepath = `${currentPlanData.filePath}${
 			special ? special : getLessonFilename(section, num)
 		}`;

@@ -1,7 +1,7 @@
 <script context="module">
 	import { prepareResources } from '$lib/fluent.js';
 	import { setPlanData } from '$lib/get-data.js';
-	import { plans, currentPlan, locale } from '$lib/store.js';
+	import { plans, currentPlan, lessonInfo, locale } from '$lib/store.js';
 
 	/**
 	 * @type {import('@sveltejs/kit').Load}
@@ -24,11 +24,31 @@
 		delete planData.ready;
 		plans.set(planData);
 
+		let lesson = {
+			section: '',
+			num: '',
+			special: '',
+		};
+
+		if (page.params.lesson) {
+			
+			const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(page.params.lesson);
+				if (!match) {
+					return {
+						status: 404,
+						error: new Error(`Could not load ${page.path}`)
+					};
+				}
+				lesson = match.groups;
+				lessonInfo.set(lesson);
+		}
+
 		return {
 			context: {
 				plans: planData,
 				currentPlan: planType ? planData[planType] : false,
-				urlParams
+				urlParams,
+				lesson,
 			},
 			props: {
 				urlParams
