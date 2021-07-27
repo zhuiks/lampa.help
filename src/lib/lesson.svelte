@@ -3,6 +3,7 @@
 	import LessonHeader from './elements/lesson-header.svelte';
 	import MemoryVerse from './elements/memory-verse.svelte';
 	import Character from './elements/character.svelte';
+import LessonApplication from './elements/lesson-application.svelte';
 
 	export let section;
 	export let lesson;
@@ -32,9 +33,7 @@
 
 	<section>
 		<h3><Localized id="application" /></h3>
-		{#each lesson['Application'].split('\n') as paragraph}
-			<p>{paragraph}</p>
-		{/each}
+		<LessonApplication text={lesson['Application']} />
 	</section>
 
 	<footer>
