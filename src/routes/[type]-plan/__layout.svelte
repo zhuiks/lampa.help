@@ -24,31 +24,28 @@
 		delete planData.ready;
 		plans.set(planData);
 
-		let lesson = {
-			section: '',
-			num: '',
-			special: '',
-		};
+		let lesson = false;
 
 		if (page.params.lesson) {
-			
-			const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(page.params.lesson);
-				if (!match) {
-					return {
-						status: 404,
-						error: new Error(`Could not load ${page.path}`)
-					};
-				}
-				lesson = match.groups;
-				lessonInfo.set(lesson);
+			const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(
+				page.params.lesson
+			);
+			if (!match) {
+				return {
+					status: 404,
+					error: new Error(`Could not load ${page.path}`)
+				};
+			}
+			lesson = match.groups;
 		}
+		lessonInfo.set(lesson);
 
 		return {
 			context: {
 				plans: planData,
 				currentPlan: planType ? planData[planType] : false,
 				urlParams,
-				lesson,
+				lesson
 			},
 			props: {
 				urlParams
@@ -60,19 +57,32 @@
 <script>
 	import { FluentProvider, Localized } from '@nubolab-ffwd/svelte-fluent';
 	import { generateBundles } from '$lib/fluent';
+	import LessonLink from '$lib/elements/lesson-link.svelte';
 	import PlanSelect from '$lib/elements/plan-select.svelte';
 	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
 	import '../../app.css';
+	
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+	onMount(async () => console.log('layout onMount'));
+  beforeUpdate(async () => console.log('layout beforeUpdate'));
+  afterUpdate(async () => console.log('layout afterUpdate'));
+  onDestroy(async() => console.log('layout onDestroy'));
 
 	let scrollY;
-
+	
 	export let urlParams;
+	
 </script>
 
 <svelte:window bind:scrollY />
 <FluentProvider bundles={generateBundles($locale)}>
 	<header>
-		<nav class:visible={scrollY > 60}>tudy - sudy</nav>
+		{#if $lessonInfo}
+			<nav class:visible={scrollY > 60}>
+				<LessonLink relative={-1} />
+				<LessonLink relative={1} />
+			</nav>
+		{/if}
 		<h5 class="slogan"><a href={urlParams}><Localized id="slogan" /></a></h5>
 	</header>
 	<main>
@@ -99,6 +109,9 @@
 		right: 0;
 		background: var(--blue);
 		padding: 0.5em 1.5em;
+		display: flex;
+		justify-content: space-between;
+		color: white;
 		z-index: 947;
 	}
 	nav.visible {

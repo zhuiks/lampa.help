@@ -9,6 +9,7 @@
 		const currentPlanData = context.currentPlan || context.plans[0];
 
 		const { section, num, special } = context.lesson;
+
 		const filepath = `${currentPlanData.filePath}${
 			special ? special : getLessonFilename(section, num)
 		}`;
@@ -39,6 +40,12 @@
 
 <script>
 	import Lesson from '$lib/lesson.svelte';
+
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+	onMount(async () => console.log('lesson page onMount'));
+  beforeUpdate(async () => console.log('lesson page beforeUpdate'));
+  afterUpdate(async () => console.log('lesson page afterUpdate'));
+  onDestroy(async() => console.log('lesson page onDestroy'));
 
 	export let lesson;
 	export let section;

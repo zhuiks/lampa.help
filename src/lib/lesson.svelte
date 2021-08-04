@@ -5,13 +5,19 @@
 	import Character from './elements/character.svelte';
 	import LessonApplication from './elements/lesson-application.svelte';
 
+  import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+	onMount(async () => console.log('lesson onMount', lesson["Number"]));
+  beforeUpdate(async () => console.log('lesson beforeUpdate', lesson["Number"]));
+  afterUpdate(async () => console.log('lesson afterUpdate'));
+  onDestroy(async() => console.log('lesson onDestroy'));
+
 	export let section;
 	export let lesson;
 </script>
 
 <article class="lesson">
 	<LessonHeader
-		lessonNumber={lesson['Number']}
+		lessonNumber={lesson["Number"]}
 		lessonTitle={lesson['Title']}
 		lessonSection={section}
 		lessonScripture={lesson['Scripture']}
