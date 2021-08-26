@@ -6,7 +6,6 @@
 </script>
 
 <div class="container">
-	<div class="line" />
 	{#if num}
 		<a class="circle" href={link} rel="external"><strong>#{num}</strong></a>
 	{/if}
@@ -26,13 +25,17 @@
 		grid-template-columns: 1fr calc(var(--circle-size) * 1.3) 1fr;
 		min-height: calc(var(--circle-size) * 1.3);
 		align-items: center;
+		position: relative;
 	}
-	.line {
-		grid-column: 2;
-    grid-row: 1;
-		width: calc(50% - 1px);
-		border-inline-end: 3px solid var(--heading-color);
-    align-self: stretch;
+	.container::after {
+		content: "";
+		position: absolute;
+		width: 3px;
+		height: 100%;
+		background: var(--heading-color);
+		z-index: 1;
+		top: 0;
+		left: calc(50% - 1.5px);
 	}
 	.circle {
     grid-column: 2;
@@ -48,6 +51,9 @@
 		letter-spacing: -1px;
 		border-radius: 50%;
 		border: 2px solid var(--heading-color);
+		/* outline: 2px solid white; */
+		/* outline-offset: 2px; */
+		z-index: 2;
 	}
 
 	.title {
