@@ -8,11 +8,11 @@
 <div class="container">
 	<div class="line" />
 	{#if num}
-		<a class="circle" href={link}><strong>#{num}</strong></a>
+		<a class="circle" href={link} rel="external"><strong>#{num}</strong></a>
 	{/if}
 
 	<div class="title">
-		<a href={link}>{title}</a>
+		<a href={link} rel="external">{title}</a>
 		<div class="details">{passage.split(' (')[0]}</div>
 	</div>
 </div>
