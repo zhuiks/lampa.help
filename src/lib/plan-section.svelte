@@ -38,7 +38,7 @@
 
 <style>
 	section {
-		margin-top: 1.5em;
+		margin-top: 1em;
 	}
 	h3 {
 		/* padding: 0 0 0 1.5em; */
@@ -46,8 +46,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 0;
+		margin: 0 0 1em 1em;
+		padding-top: 0.5em;
 		text-decoration: underline;
+		position: sticky;
+		top: 0;
+		background: white;
+		z-index: 3;
+	}
+
+	h3::after {
+		content: "";
+		position: absolute;
+		bottom: -1em;
+		height: 1em;
+		width: 100%;
+		background: linear-gradient(to bottom, white 0%, rgba(255, 255, 255, 0) 100%);
 	}
 
 	h3.expanded {
