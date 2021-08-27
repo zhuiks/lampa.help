@@ -8,11 +8,10 @@
 	--pink: #ff82e4;
 	--dark-green: #08dba1;
 	--orange: #fd791d;
-	--primary-color: #b9c6d2;
 	--secondary-color: #d0dde9;
 	--tertiary-color: #edf0f8;
 	--accent-color: #ff3e00;
-	--heading-color: #840000;
+	--primary-color: #840000;
 	--text-color: #333333;
 }
 
@@ -31,7 +30,7 @@ body {
 
 h1,h2,h3 {
 	font-family: var(--font-header);
-	color: var(--heading-color);
+	color: var(--primary-color);
 	font-weight: normal;
 }
 
