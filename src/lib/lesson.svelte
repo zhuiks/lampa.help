@@ -3,6 +3,7 @@
 	import LessonHeader from './elements/lesson-header.svelte';
 	import MemoryVerse from './elements/memory-verse.svelte';
 	import Character from './elements/character.svelte';
+	import LessonScripture from './elements/lesson-scripture.svelte';
 	import LessonApplication from './elements/lesson-application.svelte';
 
   import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
@@ -20,22 +21,20 @@
 		lessonNumber={lesson["Number"]}
 		lessonTitle={lesson['Title']}
 		lessonSection={section}
-		lessonScripture={lesson['Scripture']}
+		lessonTruth={lesson['Truth']}
 	/>
 
-	<MemoryVerse verse={lesson['Verse']} />
-
-	<h3 class="truth"><Localized id="main-truth" /></h3>
-	<h2>{lesson['Truth']}</h2>
-
+	<LessonScripture scripture={lesson['Scripture']} />
 	<section>
 		<h3><Localized id="summary" /></h3>
 		{#each lesson['Summary'].split('\n') as paragraph}
-			<p>{paragraph}</p>
+		<p>{paragraph}</p>
 		{/each}
 	</section>
-
+	
 	<Character values={lesson['Character']} />
+	
+	<MemoryVerse verse={lesson['Verse']} />
 
 	<section>
 		<h3><Localized id="application" /></h3>
@@ -59,26 +58,5 @@
 		max-width: 1024px;
 		margin: 0 auto;
 	}
-	h2 {
-		color: var(--orange);
-		margin-top: 0;
-		margin-bottom: 2rem;
-	}
-	h3.truth {
-		margin-top: 3rem;
-		margin-bottom: 0;
-		text-align: center;
-		font-weight: normal;
-		color: #999;
-		width: 180px;
-	}
-	@media screen and (min-width: 600px) {
-		h3.truth {
-			clear: left;
-			margin-top: 5.5rem;
-		}
-		h2 {
-			margin-bottom: 3.5rem;
-		}
-	}
+	
 </style>
