@@ -32,7 +32,7 @@
 		position: absolute;
 		width: 3px;
 		height: 100%;
-		background: var(--heading-color);
+		background: var(--primary-color);
 		z-index: 1;
 		top: 0;
 		left: calc(50% - 1.5px);
@@ -50,7 +50,7 @@
 		font-size: 0.6em;
 		letter-spacing: -1px;
 		border-radius: 50%;
-		border: 2px solid var(--heading-color);
+		border: 2px solid var(--primary-color);
 		/* outline: 2px solid white; */
 		/* outline-offset: 2px; */
 		z-index: 2;

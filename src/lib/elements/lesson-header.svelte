@@ -1,34 +1,19 @@
 <script>
 	import { Localized } from '@nubolab-ffwd/svelte-fluent';
-	import WiredCard from '$lib/wired/wired-card.svelte';
 
 	export let lessonNumber;
 	export let lessonTitle;
 	export let lessonSection;
-	export let lessonScripture;
+	export let lessonTruth;
 
 	const subHeading = (lessonSection || '') + (lessonNumber ? ` #${lessonNumber}` : '');
-	var passage, passageNotes;
-
-	const scriptureMatch = /^(?<passage>.*?)\s*(?:\((?<notes>.+)\))?\s*$/.exec(lessonScripture);
-	if (scriptureMatch) {
-		passage = scriptureMatch[1];
-		passageNotes = scriptureMatch.length > 2 ? scriptureMatch[2] : undefined;
-	}
 </script>
 
 <header>
-	{#if passage}
-		<div class="scripture-passage">
-			<WiredCard>
-				<h3><Localized id="scripture" /></h3>
-				<p>{passage}</p>
-			</WiredCard>
-			{#if passageNotes}
-				<p class="notes">* {passageNotes}</p>
-			{/if}
-		</div>
-	{/if}
+	<div class="hero">
+		<!-- <h3 class="truth"><Localized id="main-truth" /></h3> -->
+		<h2>{lessonTruth}</h2>
+	</div>
 
 	{#if subHeading}
 		<h4>{subHeading}</h4>
@@ -48,24 +33,38 @@
 		margin-top: 2rem;
 		margin-bottom: 0;
 	}
-	.scripture-passage h3 {
-		margin: 0;
-		font-size: 1em;
-	}
-	.scripture-passage p {
-		margin: 0;
-	}
-	.notes {
-		font-size: 0.8em;
-		margin: 0;
+
+  .hero {
+		margin: -3em -1.5em 1em;
+		height: 85vh;
+		display: grid;
+		place-content: center;
+		background: var(--blue) 85%;
 	}
 
+	h2 {
+		color: var(--yellow);
+		margin: 0 2.5rem;
+		text-shadow: 0 0 5px #0005;
+		text-align: center;
+		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		line-height: 1.2;
+	}
+	/* h3.truth {
+		margin: 0 5rem;
+		font-weight: normal;
+		color: white;
+	} */
 	@media screen and (min-width: 600px) {
-		.scripture-passage {
-			float: left;
-			max-width: 10em;
+		/* h3.truth {
+			clear: left;
+			margin-top: 5.5rem;
+		} */
+		h2 {
+			margin-bottom: 3.5rem;
 		}
-
 		h4 {
 			margin-top: 0;
 		}
