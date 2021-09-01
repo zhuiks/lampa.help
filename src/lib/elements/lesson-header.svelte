@@ -39,13 +39,13 @@
 		height: 85vh;
 		display: grid;
 		place-content: center;
-		background: var(--blue) 85%;
+		background: linear-gradient(160deg, var(--secondary-color) 10%, var(--tertiary-color));
 	}
 
 	h2 {
-		color: var(--yellow);
+		color: var(--primary-color);
 		margin: 0 2.5rem;
-		text-shadow: 0 0 5px #0005;
+		text-shadow: 0 0 15px #FFF;
 		text-align: center;
 		font-weight: bold;
 		text-transform: uppercase;
