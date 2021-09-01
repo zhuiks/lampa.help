@@ -98,7 +98,7 @@
 
 <style>
 	header {
-		background: var(--blue);
+		background: var(--secondary-color);
 		padding: 0 1.5em;
 	}
 	nav {
@@ -107,7 +107,7 @@
 		top: 0;
 		left: 0;
 		right: 0;
-		background: var(--blue);
+		background: var(--secondary-color);
 		padding: 0.5em 1.5em;
 		display: flex;
 		justify-content: space-between;

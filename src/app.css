@@ -8,11 +8,14 @@
 	--pink: #ff82e4;
 	--dark-green: #08dba1;
 	--orange: #fd791d;
-	--secondary-color: #d0dde9;
-	--tertiary-color: #edf0f8;
-	--accent-color: #ff3e00;
-	--primary-color: #840000;
+	--primary-color: #F23005;
+	--secondary-color: #12D4FF;
+	--secondary-dark-color: #148BA6;
+	--tertiary-color: #11F223;
+	--tertiary-dark-color: #14A620;
+	--accent-color: #FFF500;
 	--text-color: #333333;
+	--bg-color: white;
 }
 
 body {
@@ -45,7 +48,7 @@ h4 {
 }
 
 a {
-	color: var(--accent-color);
+	color: var(--secondary-color);
 	text-decoration: none;
 }
 
