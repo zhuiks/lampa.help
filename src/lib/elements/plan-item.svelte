@@ -1,4 +1,6 @@
 <script>
+	import NumCircle from '$lib/atoms/num-circle.svelte';
+
 	export let num = '';
 	export let title;
 	export let passage = '';
@@ -6,9 +8,9 @@
 </script>
 
 <div class="container">
-	{#if num}
-		<a class="circle" href={link} rel="external"><strong>#{num}</strong></a>
-	{/if}
+	<div class="circle">
+		<NumCircle {link} {num} />
+	</div>
 
 	<div class="title">
 		<a href={link} rel="external">{title}</a>
@@ -28,7 +30,7 @@
 		position: relative;
 	}
 	.container::after {
-		content: "";
+		content: '';
 		position: absolute;
 		width: 3px;
 		height: 100%;
@@ -38,21 +40,10 @@
 		left: calc(50% - 1.5px);
 	}
 	.circle {
-    grid-column: 2;
-    grid-row: 1;
-    place-self: center;
+		grid-column: 2;
+		grid-row: 1;
+		place-self: center;
 		background: white;
-		display: block;
-		height: var(--circle-size);
-		width: var(--circle-size);
-		line-height: var(--circle-size);
-		text-align: center;
-		font-size: 0.6em;
-		letter-spacing: -1px;
-		border-radius: 50%;
-		border: 2px solid var(--primary-color);
-		/* outline: 2px solid white; */
-		/* outline-offset: 2px; */
 		z-index: 2;
 	}
 
