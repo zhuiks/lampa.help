@@ -1,6 +1,6 @@
 <script>
 	import { Localized } from '@nubolab-ffwd/svelte-fluent';
-	import LessonHeader from './elements/lesson-header.svelte';
+	import LessonHeader from './templates/lesson-header.svelte';
 	import MemoryVerse from './elements/memory-verse.svelte';
 	import Character from './elements/character.svelte';
 	import LessonScripture from './elements/lesson-scripture.svelte';

@@ -1,5 +1,5 @@
 <script>
-	import PlanItem from './elements/plan-item.svelte';
+	import PlanItem from '../elements/plan-item.svelte';
 
 	export let expanded = true;
 	export let section;
