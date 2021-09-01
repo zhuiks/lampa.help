@@ -5,10 +5,10 @@ import netlify from '@sveltejs/adapter-netlify';
 const config = {
 	kit: {
 		adapter: netlify(),
-		prerender: {
-			enabled: false
-		},
-		ssr: false,
+		// prerender: {
+		// 	enabled: false
+		// },
+		// ssr: false,
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',
 		vite: {
