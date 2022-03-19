@@ -32,6 +32,7 @@
 	import { FluentProvider, Localized } from '@nubolab-ffwd/svelte-fluent';
 	import { generateBundles } from '$lib/fluent';
 	import PlanSelect from '$lib/elements/plan-select.svelte';
+	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte'
 	import '../app.css';
 </script>
 
@@ -44,5 +45,6 @@
 		<p><Localized id="about" /></p>
 
 		<PlanSelect />
+    <LocaleSwitcher />
 	</main>
 </FluentProvider>

@@ -53,4 +53,4 @@
 </script>
 
 <Lesson {section} {lesson} />
-<LessonFooter />
+<!-- <LessonFooter /> -->

@@ -9,7 +9,7 @@
     const newLocale = e.detail.value;
     if (query.get('lang') != newLocale) {
       query.set('lang', newLocale);
-      const newLocation = `//${host}${path}/?${query.toString()}`;
+      const newLocation = `//${host}${path.replace(/\/$/, '')}/?${query.toString()}`;
       document.location.href = newLocation;
     }
   }
