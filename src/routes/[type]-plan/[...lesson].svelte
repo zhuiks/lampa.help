@@ -40,15 +40,17 @@
 
 <script>
 	import Lesson from '$lib/lesson.svelte';
+	import LessonFooter from '$lib/templates/lesson-footer.svelte';
 
-  import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
-	onMount(async () => console.log('lesson page onMount'));
-  beforeUpdate(async () => console.log('lesson page beforeUpdate'));
-  afterUpdate(async () => console.log('lesson page afterUpdate'));
-  onDestroy(async() => console.log('lesson page onDestroy'));
+  // import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
+	// onMount(async () => console.log('lesson page onMount'));
+  // beforeUpdate(async () => console.log('lesson page beforeUpdate'));
+  // afterUpdate(async () => console.log('lesson page afterUpdate'));
+  // onDestroy(async() => console.log('lesson page onDestroy'));
 
 	export let lesson;
 	export let section;
 </script>
 
 <Lesson {section} {lesson} />
+<LessonFooter />

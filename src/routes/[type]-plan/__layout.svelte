@@ -62,12 +62,6 @@
 	import LocaleSwitcher from '$lib/elements/locale-switcher.svelte';
 	import '../../app.css';
 	
-  import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
-	onMount(async () => console.log('layout onMount'));
-  beforeUpdate(async () => console.log('layout beforeUpdate'));
-  afterUpdate(async () => console.log('layout afterUpdate'));
-  onDestroy(async() => console.log('layout onDestroy'));
-
 	let scrollY;
 	
 	export let urlParams;
