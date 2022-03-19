@@ -86,8 +86,11 @@
 	<footer>
 		<PlanSelect />
 		<LocaleSwitcher />
-		(c) 2021
+		(c) 2021		
 	</footer>
+	<div class="construction">
+		🚧 Site is under construction. Please send feedback on <a href="mailto:lampochka.help@gmail.com">lampochka.help</a>
+	</div>
 </FluentProvider>
 
 <style>
@@ -132,6 +135,11 @@
 		background-color: var(--green);
 		padding: 1em 1.5em;
 		margin-top: auto;
+	}
+	.construction {
+		text-align: center;
+		background-color: black;
+		color: white;
 	}
 
 	@media screen and (min-width: 600px) {
