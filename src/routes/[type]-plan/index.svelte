@@ -4,8 +4,8 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ fetch, context }) {
-		const currentPlanData = context.currentPlan || context.plans[0];
+	export async function load({ fetch, stuff }) {
+		const currentPlanData = stuff.currentPlan || stuff.plans[0];
 
 		const sections = await Promise.all(
 			currentPlanData.sections.map(async (sectionData) => {
@@ -20,7 +20,7 @@
 							lessons.push({
 								title: res.data['Title'],
 								passage: res.data['Scripture'],
-								link: `${currentPlanData.urlPath}${details[i]}${context.urlParams}`
+								link: `${currentPlanData.urlPath}${details[i]}${stuff.urlParams}`
 							});
 						}
 					}
@@ -39,7 +39,7 @@
 									num: res.data['Number'],
 									title: res.data['Title'],
 									passage: res.data['Scripture'],
-									link: `${currentPlanData.urlPath}${sectionKey}/lesson${i}${context.urlParams}`
+									link: `${currentPlanData.urlPath}${sectionKey}/lesson${i}${stuff.urlParams}`
 								});
 							}
 						}

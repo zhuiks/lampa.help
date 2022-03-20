@@ -6,20 +6,23 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch }) {
-		const lang = page.query.get('lang') || 'en';
+	export async function load({ url, params, fetch }) {
+		const lang = url.searchParams.get('lang') || 'en';
 		locale.set(lang);
 
 		await prepareResources(fetch);
 
 		currentPlan.set(null);
 
-		const planType = page.params.type;
+		const planType = params.type;
 		currentPlan.set(planType);
 
 		const planData = await setPlanData(fetch, lang);
 		if (!planData.ready) {
-			return planData;
+			return {
+				status: planData.status,
+				error: planData.error
+			};
 		}
 		delete planData.ready;
 		plans.set(planData);

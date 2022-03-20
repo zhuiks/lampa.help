@@ -6,34 +6,37 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ page, fetch }) {
-		const lang = page.query.get('lang') || 'en';
+	export async function load({ url, params, fetch }) {
+		const lang = url.searchParams.get('lang') || 'en';
 
 		locale.set(lang);
 		const urlParams = `/?lang=${lang}`;
 
 		await prepareResources(fetch);
 
-		const planType = page.params.type;
+		const planType = params.type;
 		currentPlan.set(planType);
 
 		const planData = await setPlanData(fetch, lang);
 		if (!planData.ready) {
-			return planData;
+			return {
+				status: planData.status,
+				error: planData.error,
+			};
 		}
 		delete planData.ready;
 		plans.set(planData);
 
 		let lesson = false;
 
-		if (page.params.lesson) {
+		if (params.lesson) {
 			const match = /\/?(?:(?<section>[^\/]+)\/[^\/\d\s]*(?<num>\d+))|(?<special>[^\/]+)$/.exec(
-				page.params.lesson
+				params.lesson
 			);
 			if (!match) {
 				return {
 					status: 404,
-					error: new Error(`Could not load ${page.path}`)
+					error: new Error(`Could not load ${url.pathname}`)
 				};
 			}
 			lesson = match.groups;
@@ -41,7 +44,7 @@
 		lessonInfo.set(lesson);
 
 		return {
-			context: {
+			stuff: {
 				plans: planData,
 				currentPlan: planType ? planData[planType] : false,
 				urlParams,

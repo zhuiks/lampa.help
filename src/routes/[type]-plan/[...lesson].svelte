@@ -4,11 +4,11 @@
 	/**
 	 * @type {import('@sveltejs/kit').Load}
 	 */
-	export async function load({ fetch, context }) {
+	export async function load({ fetch, stuff }) {
 			
-		const currentPlanData = context.currentPlan || context.plans[0];
+		const currentPlanData = stuff.currentPlan || stuff.plans[0];
 
-		const { section, num, special } = context.lesson;
+		const { section, num, special } = stuff.lesson;
 
 		const filepath = `${currentPlanData.filePath}${
 			special ? special : getLessonFilename(section, num)
