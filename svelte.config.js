@@ -1,19 +1,27 @@
 import svelteFluent from '@nubolab-ffwd/svelte-fluent/rollup-plugin';
-import netlify from '@sveltejs/adapter-netlify';
+import adapter from "@sveltejs/adapter-static";
+
+const dev = process.env.NODE_ENV === "development";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: netlify(),
+		adapter: adapter({
+			// fallback: "docs/index.html",
+			pages: "docs",
+			assets: "docs"
+		}),
+		paths: {
+			base: dev ? "" : "/little-lamp",
+		},
 		// prerender: {
 		// 	enabled: false
 		// },
 		// ssr: false,
 		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
 		vite: {
-      plugins: [svelteFluent()],
-    }
+			plugins: [svelteFluent()],
+		}
 	}
 };
 
