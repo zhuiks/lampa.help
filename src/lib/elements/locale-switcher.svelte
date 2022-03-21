@@ -4,14 +4,27 @@
 	import { page } from '$app/stores';
 	import { avaliableLocales } from '$lib/fluent.js';
 
+	const { url, params } = $page;
+	const isMain = Object.keys(params).length < 2;
+
 	function handleLocaleChage(e) {
-		const { url, params: {lang: oldLocale } } = $page;
 		const newLocale = e.detail.value;
-		if (oldLocale != newLocale) {
-			const newLocation = `//${url.host}${url.pathname.replace(`/${oldLocale}`, `/${newLocale}`)}`;
-			document.location.href = newLocation;
+		if ($locale != newLocale) {
+			document.location.href = currentPageLink(newLocale);
 		}
+	}
+
+	function currentPageLink(newLocale) {
+		return `${url.pathname.replace(`/${$locale}`, `/${newLocale}`)}`;
 	}
 </script>
 
-<WiredCombo bind:value={$locale} options={avaliableLocales} on:change={handleLocaleChage} />
+{#if isMain}
+	{#each Object.entries(avaliableLocales) as [loc, name]}
+		{#if loc !== $locale}
+			<a rel="external" href={currentPageLink(loc)}>{name}</a>
+		{/if}
+	{/each}
+{:else}
+	<WiredCombo bind:value={$locale} options={avaliableLocales} on:change={handleLocaleChage} />
+{/if}
