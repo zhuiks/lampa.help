@@ -7,7 +7,6 @@ import adapter from "@sveltejs/adapter-static";
 const config = {
 	kit: {
 		adapter: adapter({
-			// fallback: "docs/index.html",
 			pages: "docs",
 			assets: "docs",
 			fallback: "index.html"
@@ -15,11 +14,10 @@ const config = {
 		// paths: {
 		// 	base: dev ? "" : "/little-lamp",
 		// },
-		prerender: {
-			enabled: false
-		},
+		// prerender: {
+		// 	enabled: false
+		// },
 		// ssr: false,
-		// hydrate the <div id="svelte"> element in src/app.html
 		vite: {
 			plugins: [svelteFluent()],
 		}
