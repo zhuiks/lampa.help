@@ -1,0 +1,1 @@
+import{L as a,D as n}from"./vendor-93d9c1c6.js";const e=n({}),o=n(null),i=a([e,o],([t,s])=>t&&s?t[s]:null),l=n(!1),r=a([i,l],([t,s])=>s&&s.section?t.sections.find(c=>!!c[s.section])[s.section]:""),u=a(r,t=>t.Lessons),p=n("en");export{l as a,i as b,o as c,u as d,p as l,e as p};
