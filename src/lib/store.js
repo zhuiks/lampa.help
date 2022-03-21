@@ -9,5 +9,3 @@ export const currentSection = derived([currentPlanData, lessonInfo], ([$currentP
   $lessonInfo && $lessonInfo.section ? $currentPlanData.sections.find((s) => !!s[$lessonInfo.section])[$lessonInfo.section] : '');
 
 export const locale = writable('en');
-
-export const urlParams = derived(locale, $locale => `/?lang=${$locale}`);

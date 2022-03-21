@@ -1,5 +1,5 @@
 <script>
-	import { plans, currentPlan, urlParams } from '$lib/store.js';
+	import { plans, currentPlan, locale } from '$lib/store.js';
 
 	export let header = false;
 </script>
@@ -17,7 +17,7 @@
 				{#if planKey == $currentPlan}
 					<strong>{planData.name}</strong>
 				{:else}
-					<a href="/{planKey}-plan{$urlParams}">{planData.name}</a>
+					<a href="/{$locale}/{planKey}-plan">{planData.name}</a>
 				{/if}
 			</li>
 		{/if}

@@ -1,5 +1,5 @@
 <script>
-	import { lessonInfo, currentPlanData, currentSection, urlParams } from '$lib/store.js';
+	import { lessonInfo, currentPlanData, currentSection, locale } from '$lib/store.js';
 
   import { onMount, onDestroy, beforeUpdate, afterUpdate } from 'svelte';
 	onMount(async () => console.log('lesson link onMount', num));
@@ -11,7 +11,7 @@
 
 	const num = parseInt($lessonInfo.num) + relative;
 
-	const href = `/${$currentPlanData.urlPath}${$lessonInfo.section}/lesson${num}${$urlParams}`;
+	const href = `/${$locale}/${$currentPlanData.urlPath}${$lessonInfo.section}/lesson${num}`;
 
 </script>
 

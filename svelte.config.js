@@ -9,15 +9,14 @@ const config = {
 		adapter: adapter({
 			pages: "docs",
 			assets: "docs",
-			fallback: "index.html"
+			// fallback: "index.html"
 		}),
 		// paths: {
-		// 	base: dev ? "" : "/little-lamp",
+		// 	base: dev ? "" : "/",
 		// },
-		// prerender: {
-		// 	enabled: false
-		// },
-		// ssr: false,
+		prerender: {
+			default: true
+		},
 		vite: {
 			plugins: [svelteFluent()],
 		}
