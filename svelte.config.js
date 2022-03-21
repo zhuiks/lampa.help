@@ -15,9 +15,9 @@ const config = {
 		// paths: {
 		// 	base: dev ? "" : "/little-lamp",
 		// },
-		// prerender: {
-		// 	default: true
-		// },
+		prerender: {
+			enabled: false
+		},
 		// ssr: false,
 		// hydrate the <div id="svelte"> element in src/app.html
 		vite: {
