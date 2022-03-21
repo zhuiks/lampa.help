@@ -66,6 +66,9 @@
 
 <svelte:window bind:scrollY />
 <FluentProvider bundles={generateBundles($locale)}>
+	<div class="construction">
+		🚧 Site is under construction. Please send feedback on <a href="mailto:lampochka.help@gmail.com">lampochka.help</a>
+	</div>
 	<header>
 		{#if $lessonInfo}
 			<nav class:visible={scrollY > 60}>
@@ -84,9 +87,6 @@
 		<LocaleSwitcher />
 		(c) 2021		
 	</footer>
-	<div class="construction">
-		🚧 Site is under construction. Please send feedback on <a href="mailto:lampochka.help@gmail.com">lampochka.help</a>
-	</div>
 </FluentProvider>
 
 <style>
